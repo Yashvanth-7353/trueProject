@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
 import Navbar from '/src/components/Navbar.jsx';
-// We can reuse the Login CSS since the layout is identical!
 import './Login.css'; 
 
 const Signup = () => {
-  const [role, setRole] = useState('student'); // Default to student
+  const navigate = useNavigate();
+  const [role, setRole] = useState('student');
+  const [error, setError] = useState('');
+  const [loading,SF_loading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    usn: '',     // Only for students
-    dept: ''     // For both (or specific to mentor)
+    usn: '',     
+    dept: '',
+    year: '',    // Added
+    sem: ''      // Added
   });
 
   const handleChange = (e) => {
@@ -22,10 +27,61 @@ const Signup = () => {
     setRole(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup Data:', { ...formData, role });
-    // Connect to backend later
+    setError('');
+    SF_loading(true);
+
+    const API_BASE_URL = "http://10.237.126.15:8000";
+    const endpoint = role === 'student' ? '/register/student' : '/register/teacher';
+    
+    // Prepare payload based on role
+    let payload = {};
+
+    if (role === 'student') {
+      payload = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        usn: formData.usn,
+        dept: formData.dept,
+        year: parseInt(formData.year), // Backend expects Integer
+        sem: parseInt(formData.sem)    // Backend expects Integer
+      };
+    } else {
+      payload = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        dept: formData.dept
+      };
+    }
+
+    try {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Registration failed');
+      }
+
+      console.log('Registration Success:', data);
+      alert(`${role.charAt(0).toUpperCase() + role.slice(1)} registered successfully!`);
+      navigate('/login'); // Redirect to login page
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      SF_loading(false);
+    }
   };
 
   return (
@@ -36,6 +92,8 @@ const Signup = () => {
           <h2>Create Account</h2>
           <p>Join the EL Management Platform</p>
           
+          {error && <p style={{color: 'red', marginBottom: '10px'}}>{error}</p>}
+
           <form onSubmit={handleSubmit}>
             
             {/* Role Selection */}
@@ -43,7 +101,7 @@ const Signup = () => {
               <label>I am a...</label>
               <select value={role} onChange={handleRoleChange} className="role-select">
                 <option value="student">Student</option>
-                <option value="mentor">Mentor</option>
+                <option value="mentor">Mentor (Teacher)</option>
               </select>
             </div>
 
@@ -57,12 +115,25 @@ const Signup = () => {
               <input type="email" name="email" placeholder="Enter college email" onChange={handleChange} required />
             </div>
 
-            {/* Conditional Field: Show USN only if Student */}
+            {/* Student Specific Fields */}
             {role === 'student' && (
-              <div className="form-group">
-                <label>USN</label>
-                <input type="text" name="usn" placeholder="e.g., 1RV23IS001" onChange={handleChange} required />
-              </div>
+              <>
+                <div className="form-group">
+                  <label>USN</label>
+                  <input type="text" name="usn" placeholder="e.g., 1RV23IS001" onChange={handleChange} required />
+                </div>
+
+                <div style={{display: 'flex', gap: '10px'}}>
+                  <div className="form-group" style={{flex: 1}}>
+                    <label>Year</label>
+                    <input type="number" name="year" placeholder="1-4" onChange={handleChange} required />
+                  </div>
+                  <div className="form-group" style={{flex: 1}}>
+                    <label>Semester</label>
+                    <input type="number" name="sem" placeholder="1-8" onChange={handleChange} required />
+                  </div>
+                </div>
+              </>
             )}
 
             <div className="form-group">
@@ -75,7 +146,9 @@ const Signup = () => {
               <input type="password" name="password" placeholder="Create password" onChange={handleChange} required />
             </div>
 
-            <button type="submit" className="auth-btn">Sign Up</button>
+            <button type="submit" className="auth-btn" disabled={loading}>
+              {loading ? 'Registering...' : 'Sign Up'}
+            </button>
           </form>
 
           <p className="auth-footer">

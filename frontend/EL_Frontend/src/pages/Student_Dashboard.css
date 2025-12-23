@@ -1,0 +1,125 @@
+.dashboard-container {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.dashboard-header h1 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.dashboard-header p {
+  color: #7f8c8d;
+  margin-bottom: 30px;
+}
+
+/* --- Submission Form Styling --- */
+.submission-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.submission-card h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.submission-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.member-input {
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  background-color: #2ecc71; /* Green */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #27ae60;
+}
+
+/* --- Dashboard View Styling --- */
+.status-banner {
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.status-banner.approved { background-color: #2ecc71; }
+.status-banner.pending { background-color: #f1c40f; color: #2c3e50; }
+.status-banner.rejected { background-color: #e74c3c; }
+.status-banner.flagged { background-color: #e67e22; }
+
+.project-details-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge-safe {
+  background-color: #d5f5e3;
+  color: #27ae60;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+/* Marks Grid */
+.marks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.mark-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-top: 4px solid #3498db;
+}
+
+.mark-card h4 {
+  margin-top: 0;
+  color: #7f8c8d;
+}
+
+.mark-card .score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 10px 0;
+}
+
+.mark-card .remarks {
+  font-style: italic;
+  color: #95a5a6;
+  font-size: 0.9rem;
+}

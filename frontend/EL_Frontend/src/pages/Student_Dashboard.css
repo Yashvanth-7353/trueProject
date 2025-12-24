@@ -135,3 +135,24 @@
   font-weight: bold;
   color: #2c3e50;
 }
+
+.dashboard-loading, .dashboard-error {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.no-data-msg {
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.status-tag {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.status-tag.approved { color: green; }
+.status-tag.pending { color: orange; }
+.status-tag.rejected { color: red; }

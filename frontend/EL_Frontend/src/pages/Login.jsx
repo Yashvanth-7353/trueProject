@@ -44,7 +44,7 @@ const Login = () => {
       console.log('Login Success:', data);
       
       // Store user info (optional, but good for session management)
-      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('userEmail', formData.email);
 
       // Redirect based on role
       if (role === 'student') {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Student_Dashboard.css";
 import TeamForm from "./TeamForm"; // Add this line
+import ProjectList from "./Projectlist"; // Add this
 
 const StudentDashboard = () => {
   const studentProfile = {
@@ -207,12 +208,8 @@ const StudentDashboard = () => {
           {/* 2. SHOW TEAM FORM VIEW */}
           {activeTab === "team-form" && <TeamForm />}
           {/* 3. SHOW PROJECT LIST (Placeholder for now) */}
-          {activeTab === "project-list" && (
-            <div className="content-card">
-              <h3>All Projects List</h3>
-              <p>List of projects will be displayed here...</p>
-            </div>
-          )}
+          {/* 3. SHOW PROJECT LIST */}
+          {activeTab === "project-list" && <ProjectList />}
         </main>
       </div>
     </div>

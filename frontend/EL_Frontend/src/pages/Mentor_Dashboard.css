@@ -1,0 +1,163 @@
+/* Inherits basic layout from StudentDashboard.css, adding specific overrides */
+
+.mentor-header-bg {
+  border-bottom: 3px solid #6c5ce7; /* Distinct purple line for Mentors */
+}
+
+/* Table Specifics */
+.mentor-table th {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.sim-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.sim-badge.safe { background-color: #dff9fb; color: #2ecc71; }
+.sim-badge.high-risk { background-color: #ff7675; color: white; animation: pulse 2s infinite; }
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.btn-manage {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Expanded Row Styling */
+.expanded-row {
+  background-color: #f8f9fa;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.detail-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.detail-card h4 {
+  margin-top: 0;
+  color: #6c5ce7;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.detail-card ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.detail-card li {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.full-width {
+  grid-column: 1 / -1; /* Spans full width */
+}
+
+/* AI Matches Section */
+.ai-matches {
+  background-color: #fff0f0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  border: 1px solid #ffcccc;
+}
+
+.ai-matches h5 {
+  margin: 0 0 5px 0;
+  color: #c0392b;
+}
+
+/* Grading Section */
+.grading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.phase-input-box {
+  background: #fdfdfd;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.phase-input-box h5 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.phase-input-box input {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.approval-box {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-toggle {
+  padding: 8px 16px;
+  border: 1px solid #27ae60;
+  background: white;
+  color: #27ae60;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.btn-toggle.active {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-toggle.reject {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.btn-toggle.reject.active {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-save-marks {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}

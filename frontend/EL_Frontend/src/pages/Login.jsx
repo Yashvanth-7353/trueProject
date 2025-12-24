@@ -50,7 +50,7 @@ const Login = () => {
       if (role === 'student') {
         navigate('/student-dashboard');
       } else {
-        navigate('/dashboard'); // Assuming teacher goes to the main dashboard
+        navigate('/mentor-dashboard'); // Assuming teacher goes to the main dashboard
       }
 
     } catch (err) {

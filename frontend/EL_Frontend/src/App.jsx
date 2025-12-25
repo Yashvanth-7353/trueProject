@@ -5,6 +5,7 @@ import Login from '/src/pages/Login';   // Import Login
 import Signup from '/src/pages/Signup'; // Import Signup
 import StudentDashboard from '/src/pages/Student_Dashboard';
 import MentorDashboard from '/src/pages/Mentor_Dashboard';
+import ProjectList from "/src/pages/Home_page_projects.jsx";
 
 
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/mentor-dashboard" element={<MentorDashboard />} />
+          <Route path="/projects" element={<ProjectList />} />
         </Routes>
       </div>
     </Router></>

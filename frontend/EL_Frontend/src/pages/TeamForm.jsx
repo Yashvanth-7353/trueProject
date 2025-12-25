@@ -55,7 +55,7 @@ const TeamForm = () => {
 
     try {
       // Replace with your actual FastAPI URL (e.g., http://localhost:8000/create-team)
-      const response = await fetch('http://10.237.126.15:8000/create-team', {
+      const response = await fetch('http://192.168.0.101:8000/create-team', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

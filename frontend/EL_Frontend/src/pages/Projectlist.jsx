@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './Projectlist.css';
+import React, { useState, useEffect } from "react";
+import "./Projectlist.css";
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,9 +11,9 @@ const ProjectList = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://10.237.126.15:8000/projects'); // Your FastAPI URL
+        const response = await fetch("http://192.168.0.101:8000/projects"); // Your FastAPI URL
         if (!response.ok) {
-          throw new Error('Failed to fetch projects');
+          throw new Error("Failed to fetch projects");
         }
         const data = await response.json();
         setProjects(data);
@@ -44,7 +44,7 @@ const ProjectList = () => {
     <div className="project-list-container">
       <div className="list-header">
         <h3>All Submitted Projects</h3>
-        
+
         {/* Search Bar */}
         <div className="search-box">
           <input
@@ -61,9 +61,9 @@ const ProjectList = () => {
         <table className="std-table project-table">
           <thead>
             <tr>
-              <th style={{ width: '10%' }}>SL No</th>
-              <th style={{ width: '30%' }}>Project Title</th>
-              <th style={{ width: '60%' }}>Synopsis</th>
+              <th>SL No</th>
+              <th>Project Title</th>
+              <th>Synopsis</th>
             </tr>
           </thead>
           <tbody>
@@ -77,7 +77,9 @@ const ProjectList = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="3" className="no-data">No projects found matching "{searchTerm}"</td>
+                <td colSpan="3" className="no-data">
+                  No projects found matching "{searchTerm}"
+                </td>
               </tr>
             )}
           </tbody>

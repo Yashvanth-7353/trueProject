@@ -1,8 +1,10 @@
+/* --- Base Layout --- */
 .project-list-container {
   background: white;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box;
 }
 
 .list-header {
@@ -20,20 +22,21 @@
   font-size: 1.2rem;
 }
 
-/* Optimized Search Bar Styling */
+/* Search Bar Styling */
 .search-box {
   position: relative;
   width: 300px;
 }
 
 .search-box input {
-  width: 80%;
+  width: 100%; /* Changed to 100% of the container */
   padding: 10px 15px;
-  padding-right: 40px; /* Space for icon */
+  padding-right: 40px; 
   border: 1px solid #ddd;
   border-radius: 20px;
   font-size: 0.95rem;
   transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
 }
 
 .search-box input:focus {
@@ -51,38 +54,80 @@
   pointer-events: none;
 }
 
-/* Table Specifics */
+/* --- Table Responsiveness Logic --- */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .project-table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+/* Column Width Controls */
+.project-table th:nth-child(1), 
+.project-table td:nth-child(1) {
+  width: 60px; /* SL No stays small */
+}
+
+.project-table th:nth-child(2), 
+.project-table td:nth-child(2) {
+  width: 250px; /* Specific width for Title */
 }
 
 .title-cell {
   font-weight: 600;
   color: #2980b9;
+  word-wrap: break-word; /* Prevents overflow if title is one long word */
 }
 
 .synopsis-cell {
   color: #555;
   font-size: 0.9rem;
   line-height: 1.5;
-  max-width: 500px; /* Limit width to prevent super wide tables */
-  white-space: normal; /* Allow text wrapping */
+  white-space: normal; /* Ensures wrapping */
+  min-width: 300px; /* Ensures synopsis doesn't get crushed */
 }
 
-.no-data {
+/* --- Responsive Breakpoint (Below 768px) --- */
+@media (max-width: 768px) {
+  .list-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .project-list-container {
+    padding: 15px;
+  }
+
+  /* Force the columns to behave on mobile */
+  .project-table th:nth-child(2), 
+  .project-table td:nth-child(2) {
+    width: 150px !important; /* Forces the Project Title column to shrink */
+    font-size: 0.85rem;
+  }
+
+  .project-table th:nth-child(3), 
+  .project-table td:nth-child(3) {
+    min-width: 250px !important; /* Gives more room to the synopsis */
+  }
+
+  .std-table.project-table {
+    font-size: 0.85rem; /* Shrink general text size */
+  }
+}
+
+/* --- Global Utilities --- */
+.no-data, .loading, .error {
   text-align: center;
-  padding: 20px;
-  color: #7f8c8d;
-  font-style: italic;
+  padding: 30px;
 }
 
-.loading, .error {
-  text-align: center;
-  padding: 40px;
-  font-size: 1.1rem;
-  color: #2c3e50;
-}
-
-.error {
-  color: #e74c3c;
-}
+.error { color: #e74c3c; }

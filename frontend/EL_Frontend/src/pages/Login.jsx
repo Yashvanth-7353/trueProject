@@ -23,7 +23,7 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    const API_BASE_URL = "http://10.237.126.15:8000";
+    const API_BASE_URL = "http://192.168.0.101:8000";
     const endpoint = role === 'student' ? '/login/student' : '/login/teacher';
 
     try {

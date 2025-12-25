@@ -40,15 +40,18 @@ const Home = () => {
         <h2>Why Use EL Manager?</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <h3>🤖 AI Similarity Check</h3>
+            <img src="./AI-logo.png" alt="AI-logo" />
+            <h3> AI Similarity Check</h3>
             <p>Automatically flags projects that are too similar to previous years' submissions.</p>
           </div>
           <div className="feature-card">
-            <h3>📂 Centralized Repo</h3>
+            <img src="./floder-logo.png" alt="folder-logo" />
+            <h3> Centralized Repo</h3>
             <p>One place for all Phase 1, Phase 2, and Final reports and remarks.</p>
           </div>
           <div className="feature-card">
-            <h3>👨‍🏫 Role-Based Access</h3>
+            <img src="./role-logo.png" alt="role-logo" />
+            <h3> Role-Based Access</h3>
             <p>Dedicated dashboards for Students to submit and Mentors to grade.</p>
           </div>
         </div>
@@ -77,12 +80,42 @@ const Home = () => {
         </table>
       </section> */}
 
-      {/* <section className='footer'>
-        <div>
-          <p>© 2024 trueProject. All rights reserved.</p>
-          <p>Designed and developed by Vishwa Panchal and Yashwanth MU</p>
-        </div>
-      </section> */}
+      <footer className="footer-section">
+  <div className="footer-container">
+    {/* Column 1: Project Info */}
+    <div className="footer-col">
+      <h3 className="oswald-heading">trueProject</h3>
+      <p className="alan-sans-body">
+        Streamlining experiential learning with AI-powered insights.
+      </p>
+      <a href="https://github.com/Yashvanth-7353/trueProject" target="_blank" rel="noreferrer" className="project-repo-link">
+        View Project on GitHub →
+      </a>
+    </div>
+
+    {/* Column 2: Developer 1 */}
+    <div className="footer-col">
+      <h4 className="oswald-heading">Yashvanth M U</h4>
+      <div className="footer-links">
+        <a href="https://github.com/Yashvanth-7353" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yashvanth-m-u-720598282/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+
+    {/* Column 3: Developer 2 */}
+    <div className="footer-col">
+      <h4 className="oswald-heading">Vishwa Panchal</h4>
+      <div className="footer-links">
+        <a href="https://github.com/vishwapanchal" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/thevishwapanchal" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <div className="footer-bottom">
+    <p>© 2024 trueProject. All rights reserved.</p>
+  </div>
+</footer>
     </div>
   );
 };

@@ -64,9 +64,37 @@
   width: 300px;
 }
 
+.feature-card img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
+
 .feature-card h3 {
+  padding-top: 20px;
   color: #2c3e50;
   margin-bottom: 15px;
+}
+
+/* Moves the heading up */
+.feature-card:hover h3 {
+  transform: translateY(-5px);
+}
+
+/* Moves the paragraph slightly up as well, but with a tiny delay */
+.feature-card p {
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover p {
+  transform: translateY(-3px);
+  color: #333;
+}
+
+.feature-card p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 /* Projects Section */
@@ -96,4 +124,67 @@
 
 .project-table tr:nth-child(even) {
   background-color: #f8f8f8;
+}
+
+.footer-section {
+  background-color: #ece5e5;
+  padding: 60px 20px 20px 20px;
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* Project info gets more space */
+  gap: 40px;
+  text-align: left;
+}
+
+.footer-col h3, .footer-col h4 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.footer-col p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a, .project-repo-link {
+  text-decoration: none;
+  color: #4ca1af;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-family: "Alan Sans", sans-serif;
+}
+
+.footer-links a:hover, .project-repo-link:hover {
+  color: #2c3e50;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }

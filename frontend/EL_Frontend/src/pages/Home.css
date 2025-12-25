@@ -17,8 +17,14 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
 }
 
+.hero-content p span {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
 .cta-button {
   padding: 12px 30px;
   font-size: 1rem;
@@ -54,7 +60,7 @@
   background: white;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 300px;
 }
 
@@ -76,7 +82,8 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.project-table th, .project-table td {
+.project-table th,
+.project-table td {
   padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: left;

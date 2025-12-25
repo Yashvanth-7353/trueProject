@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '/src/components/Navbar.jsx';
 import './Home.css';
+import BlurText from "/src/components/BlurText";
 
 const Home = () => {
   return (
@@ -10,11 +11,26 @@ const Home = () => {
       {/* Hero Section */}
       <header className="hero-section">
         <div className="hero-content">
-          <h1>AI-Powered Experiential Learning Management</h1>
+
+          <div>
+      {/* Example using your new fonts and the blur animation */}
+      <BlurText
+        text="AI-Powered Experiential Learning Management"
+        delay={150}
+        animateBy="words"
+        direction="top"
+        className="oswald-heading " // Apply your custom CSS class here
+      />
+      
+      <p className="alan-sans-body">A centralized platform to manage student projects, detect duplication using AI, 
+            and streamline mentor grading.</p>
+    </div>
+
+          {/* <h1>AI-Powered Experiential Learning Management</h1>
           <p>
             A centralized platform to manage student projects, detect duplication using AI, 
             and streamline mentor grading.
-          </p>
+          </p> */}
           <button className="cta-button">Get Started</button>
         </div>
       </header>
@@ -61,11 +77,12 @@ const Home = () => {
         </table>
       </section> */}
 
-      <section className='footer'>
+      {/* <section className='footer'>
         <div>
-          
+          <p>© 2024 trueProject. All rights reserved.</p>
+          <p>Designed and developed by Vishwa Panchal and Yashwanth MU</p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

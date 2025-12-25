@@ -8,10 +8,23 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.navbar-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 5px;
+}
+
 .navbar-logo h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #61dafb; /* React Blue accent */
+}
+
+.navbar-logo span {
+  font-size: 0.9rem;
+  color: #bdc3c7; /* Light Gray */
+  padding-top: 10px;
 }
 
 .navbar-links {

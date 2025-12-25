@@ -3,14 +3,6 @@ import Navbar from '/src/components/Navbar.jsx';
 import './Home.css';
 
 const Home = () => {
-  // Dummy data for the project list (we will fetch this from MongoDB later)
-  const pastProjects = [
-    { id: 1, title: "Smart Traffic Light", year: "2024", dept: "ISE" },
-    { id: 2, title: "AI Crop Disease Detection", year: "2024", dept: "CSE" },
-    { id: 3, title: "Blockchain Voting System", year: "2023", dept: "ISE" },
-    { id: 4, title: "Hospital Management DB", year: "2023", dept: "AIML" },
-  ];
-
   return (
     <div className="home-container">
       <Navbar />
@@ -46,7 +38,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Project Archive Section */}
+      {/* Project Archive Section
       <section id="projects" className="projects-section">
         <h2>Past Projects Archive</h2>
         <table className="project-table">
@@ -67,6 +59,12 @@ const Home = () => {
             ))}
           </tbody>
         </table>
+      </section> */}
+
+      <section className='footer'>
+        <div>
+          
+        </div>
       </section>
     </div>
   );

@@ -7,6 +7,7 @@ import StudentDashboard from '/src/pages/Student_Dashboard';
 import MentorDashboard from '/src/pages/Mentor_Dashboard';
 
 
+
 // Placeholder for Dashboard (we will build this next)
 const Dashboard = () => <h2>Dashboard (Coming Soon)</h2>;
 
@@ -18,6 +19,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import BlurText from "./BlurText";
+
 import ProjectList from "/src/pages/Home_page_projects.jsx";
 
 
@@ -10,17 +10,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <h2>trueProject</h2>
+        <span>Because originality deserves a fair chance</span>
 
-        <div>
-      {/* Example using your new fonts and the blur animation */}
-      <BlurText
-        text="Because originality deserves a fair chance"
-        delay={150}
-        animateBy="words"
-        direction="top"
-        className="oswald-heading text-4xl font-bold" // Apply your custom CSS class here
-      />
-    </div>
+      
         
 
 

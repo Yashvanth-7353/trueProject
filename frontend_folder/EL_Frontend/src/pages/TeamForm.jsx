@@ -18,6 +18,9 @@ const TeamForm = () => {
     dept: ''
   });
 
+  // 4. NEW: Loading State
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Helper: Handle input changes for the current member
   const handleMemberChange = (e) => {
     setCurrentMember({ ...currentMember, [e.target.name]: e.target.value });
@@ -40,21 +43,23 @@ const TeamForm = () => {
     setMembers(updatedMembers);
   };
 
-  // 4. Submit to Backend API
+  // 5. Submit to Backend API
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // START LOADING
+    setIsSubmitting(true);
 
-    // Construct the payload exactly as your Pydantic model expects
+    // Construct the payload
     const payload = {
       team_name: teamName,
-      team_size: members.length, // Calculated automatically
+      team_size: members.length,
       team_members: members,
       project_title: projectTitle,
       project_synopsis: synopsis
     };
 
     try {
-      // Replace with your actual FastAPI URL (e.g., http://localhost:8000/create-team)
       const response = await fetch('http://localhost:8000/create-team', {
         method: 'POST',
         headers: {
@@ -67,18 +72,33 @@ const TeamForm = () => {
 
       if (response.ok) {
         alert(`Success! Team ID: ${data.team_id}`);
-        // Optional: Clear form or redirect
+        // Optional: Clear form logic here
+        setTeamName('');
+        setProjectTitle('');
+        setSynopsis('');
+        setMembers([]);
       } else {
         alert(`Error: ${data.detail}`);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to connect to the server.');
+    } finally {
+      // STOP LOADING (Runs whether success or error)
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="team-form-container">
+      
+      {/* --- LOADING OVERLAY COMPONENT --- */}
+      {isSubmitting && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <h2>Register Your Team</h2>
       
       <form onSubmit={handleSubmit}>
@@ -148,7 +168,10 @@ const TeamForm = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn-submit">Submit Project Proposal</button>
+        {/* Disable button while submitting to prevent double clicks */}
+        <button type="submit" className="btn-submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Project Proposal'}
+        </button>
       </form>
     </div>
   );

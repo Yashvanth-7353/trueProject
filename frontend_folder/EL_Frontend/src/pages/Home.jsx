@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import Navbar from '/src/components/Navbar.jsx';
 import './Home.css';
 import BlurText from "/src/components/BlurText";
 
 const Home = () => {
+   const navigate = useNavigate();
+   
+  const handleGetStarted = () => {
+    navigate("/login");
+  }
   return (
     <div className="home-container">
       <Navbar />
@@ -31,7 +37,7 @@ const Home = () => {
             A centralized platform to manage student projects, detect duplication using AI, 
             and streamline mentor grading.
           </p> */}
-          <button className="cta-button">Get Started</button>
+          <button className="cta-button" onClick={handleGetStarted}>Get Started</button>
           
         </div>
       </header>

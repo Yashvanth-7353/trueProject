@@ -7,11 +7,11 @@ const ProjectList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 1. Fetch Data from API on Component Mount
+  // --- 1. Fetch Data ---
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:8000/projects"); // Your FastAPI URL
+        const response = await fetch("http://localhost:8000/projects");
         if (!response.ok) {
           throw new Error("Failed to fetch projects");
         }
@@ -27,9 +27,7 @@ const ProjectList = () => {
     fetchProjects();
   }, []);
 
-  // 2. Optimized Search Logic
-  // We filter the 'projects' array based on the searchTerm.
-  // This runs instantly whenever searchTerm or projects change.
+  // --- 2. Search Logic ---
   const filteredProjects = projects.filter((project) => {
     const term = searchTerm.toLowerCase();
     const titleMatch = project.title.toLowerCase().includes(term);
@@ -37,55 +35,76 @@ const ProjectList = () => {
     return titleMatch || synopsisMatch;
   });
 
-  if (loading) return <div className="loading">Loading projects...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
-  return (
-    <div className="project-list-container">
-      <div className="list-header">
-        <h3>All Submitted Projects</h3>
+  // --- Helper: Skeleton Row Component ---
+  // Renders a single table row with animated bars
+  const SkeletonRow = () => (
+    <tr>
+      <td><div className="skeleton skeleton-text skeleton-short"></div></td>
+      <td><div className="skeleton skeleton-text skeleton-medium"></div></td>
+      <td>
+        <div className="skeleton skeleton-text skeleton-long"></div>
+        <div className="skeleton skeleton-text skeleton-long" style={{ marginTop: '5px', width: '80%' }}></div>
+      </td>
+    </tr>
+  );
 
-        {/* Search Bar */}
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Search by Title or Synopsis..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <span className="search-icon">🔍</span>
+  return (
+    <>
+      <div className="project-list-container">
+        
+        <div className="list-header">
+          <h3>All Submitted Projects</h3>
+
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search by Title or Synopsis..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <span className="search-icon">🔍</span>
+          </div>
+        </div>
+
+        <div className="table-wrapper">
+          <table className="std-table project-table">
+            <thead>
+              <tr>
+                <th style={{ width: '10%' }}>SL No</th>
+                <th style={{ width: '30%' }}>Project Title</th>
+                <th style={{ width: '60%' }}>Synopsis</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                // --- LOADING STATE: Render 5 Skeleton Rows ---
+                Array.from({ length: 7 }).map((_, index) => (
+                  <SkeletonRow key={index} />
+                ))
+              ) : filteredProjects.length > 0 ? (
+                // --- SUCCESS STATE: Render Real Data ---
+                filteredProjects.map((project, index) => (
+                  <tr key={project.project_id || index}>
+                    <td>{index + 1}</td>
+                    <td className="title-cell">{project.title}</td>
+                    <td className="synopsis-cell">{project.synopsis}</td>
+                  </tr>
+                ))
+              ) : (
+                // --- EMPTY STATE ---
+                <tr>
+                  <td colSpan="3" className="no-data">
+                    No projects found matching "{searchTerm}"
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
-
-      <div className="table-wrapper">
-        <table className="std-table project-table">
-          <thead>
-            <tr>
-              <th>SL No</th>
-              <th>Project Title</th>
-              <th>Synopsis</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <tr key={project.project_id || index}>
-                  <td>{index + 1}</td>
-                  <td className="title-cell">{project.title}</td>
-                  <td className="synopsis-cell">{project.synopsis}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3" className="no-data">
-                  No projects found matching "{searchTerm}"
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,73 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import ProjectList from "./ProjectList";
 import "./Mentor_Dashboard.css";
+
+// --- HELPER: Skeleton Component ---
+const MentorDashboardSkeleton = () => {
+  return (
+    <div className="dashboard-container">
+      {/* 1. Header Skeleton */}
+      <div className="student-header mentor-header-bg">
+        <div className="skeleton skeleton-header-title"></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginTop: '10px' }}>
+          <div className="header-info-grid" style={{ display: 'flex', gap: '20px' }}>
+            <div className="skeleton skeleton-header-info"></div>
+            <div className="skeleton skeleton-header-info"></div>
+            <div className="skeleton skeleton-header-info"></div>
+          </div>
+          <div className="skeleton skeleton-btn"></div>
+        </div>
+      </div>
+
+      <div className="dashboard-body">
+        {/* 2. Sidebar Skeleton */}
+        <aside className="sidebar">
+          <ul>
+            <li className="skeleton skeleton-menu-item"></li>
+            <li className="skeleton skeleton-menu-item"></li>
+          </ul>
+        </aside>
+
+        {/* 3. Main Content Skeleton */}
+        <main className="main-content">
+          <div className="mentor-dashboard-view">
+            <div className="skeleton skeleton-header-title" style={{ width: '200px' }}></div>
+            
+            {/* Table Skeleton */}
+            <div className="table-responsive" style={{ marginTop: '20px', background: 'white', padding: '20px', borderRadius: '8px' }}>
+              <table className="std-table mentor-table">
+                <thead>
+                  <tr>
+                    <th><div className="skeleton skeleton-cell" style={{ width: '30px' }}></div></th>
+                    <th><div className="skeleton skeleton-cell"></div></th>
+                    <th><div className="skeleton skeleton-cell"></div></th>
+                    <th><div className="skeleton skeleton-cell"></div></th>
+                    <th><div className="skeleton skeleton-cell"></div></th>
+                    <th><div className="skeleton skeleton-cell"></div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Render 5 dummy rows */}
+                  {[1, 2, 3, 4, 5].map((item) => (
+                    <tr key={item} className="skeleton-table-row">
+                      <td><div className="skeleton skeleton-cell" style={{ width: '20px' }}></div></td>
+                      <td><div className="skeleton skeleton-cell" style={{ width: '100px' }}></div></td>
+                      <td><div className="skeleton skeleton-cell" style={{ width: '200px' }}></div></td>
+                      <td><div className="skeleton skeleton-cell" style={{ width: '50px' }}></div></td>
+                      <td><div className="skeleton skeleton-cell" style={{ width: '80px' }}></div></td>
+                      <td><div className="skeleton skeleton-cell" style={{ width: '60px' }}></div></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
 
 const MentorDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -12,7 +78,7 @@ const MentorDashboard = () => {
   const [myTeams, setMyTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // <-- Add this line
+  const navigate = useNavigate(); 
 
   // 1. Fetch Data on Load
   useEffect(() => {
@@ -23,7 +89,6 @@ const MentorDashboard = () => {
 
         if (!email) throw new Error("No user logged in.");
 
-        // NOTE: Ensure this URL matches your backend IP/Port
         const response = await fetch(`http://localhost:8000/user/${email}`);
 
         if (!response.ok) throw new Error("Failed to fetch mentor details");
@@ -49,9 +114,7 @@ const MentorDashboard = () => {
 
   // --- LOGOUT FUNCTION ---
   const handleLogout = () => {
-    // 1. Clear user session
     localStorage.removeItem("userEmail");
-    // 2. Redirect to Login or Home
     navigate("/login"); 
   };
 
@@ -59,9 +122,7 @@ const MentorDashboard = () => {
     setExpandedRow(expandedRow === id ? null : id);
   };
 
-  // ---------------------------------------------------------
-  // HELPER: Format JSON Report
-  // ---------------------------------------------------------
+  // Helper: Format JSON Report
   const renderSimilarityReport = (jsonString) => {
     if (!jsonString) return <p>No detailed analysis available.</p>;
 
@@ -70,7 +131,6 @@ const MentorDashboard = () => {
 
       return (
         <div className="report-container">
-          {/* 1. ANALYSIS SECTION */}
           {data.analysis && (
             <div style={{ marginBottom: '20px' }}>
               <h5 style={{ color: '#2c3e50', borderBottom: '2px solid #eee', paddingBottom: '8px', marginBottom: '10px' }}>
@@ -82,7 +142,6 @@ const MentorDashboard = () => {
             </div>
           )}
 
-          {/* 2. COMPARISON SECTION */}
           {data.comparison && data.comparison.length > 0 && (
             <div>
               <h5 style={{ color: '#2c3e50', borderBottom: '2px solid #eee', paddingBottom: '8px', marginBottom: '15px' }}>
@@ -115,9 +174,7 @@ const MentorDashboard = () => {
     }
   };
 
-  // ---------------------------------------------------------
-  // ACTIONS
-  // ---------------------------------------------------------
+  // Actions
   const handleStatusChange = async (projectId, newStatus) => {
     const action = newStatus === "approved" ? "APPROVE" : "REJECT";
     const isConfirmed = window.confirm(
@@ -239,8 +296,9 @@ const MentorDashboard = () => {
     }
   };
 
-  if (loading)
-    return <div className="dashboard-loading">Loading Mentor Dashboard...</div>;
+  // --- UPDATED LOADING CHECK ---
+  if (loading) return <MentorDashboardSkeleton />;
+  
   if (error) return <div className="dashboard-error">Error: {error}</div>;
 
   return (
@@ -249,7 +307,6 @@ const MentorDashboard = () => {
       <div className="student-header mentor-header-bg">
         <h2>Mentor Dashboard</h2>
         
-        {/* Wrapper to align Info and Logout button */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           
           <div className="header-info-grid">
@@ -386,12 +443,10 @@ const MentorDashboard = () => {
                                     </div>
                                     <div className="matches-list">
                                       <h5>Matched Projects:</h5>
-                                      {/* UPDATED LOGIC: Display Titles matching IDs */}
                                       {project.similar_projects_id &&
                                       project.similar_projects_id.length > 0 ? (
                                         <ul style={{ paddingLeft: '20px', fontSize: '0.9rem' }}>
                                           {project.similar_projects_id.map((pid, k) => {
-                                            // Safely grab the corresponding title if available
                                             const title = project.similar_project_titles && project.similar_project_titles[k]
                                               ? project.similar_project_titles[k]
                                               : "Title Not Available";

@@ -1,4 +1,56 @@
 /* Layout Container */
+
+/* --- SKELETON LOADING STYLES --- */
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+.skeleton {
+  background: #e0e0e0;
+  background-image: linear-gradient(
+    90deg,
+    #e0e0e0 0px,
+    #f0f0f0 40px,
+    #e0e0e0 80px
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Header Skeleton */
+.skeleton-header-text {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+}
+
+/* Sidebar Skeleton */
+.skeleton-menu-item {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Content Card Skeleton */
+.skeleton-title {
+  height: 25px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.skeleton-table {
+  height: 150px;
+  width: 100%;
+}
+
+.skeleton-box {
+  height: 100px;
+  width: 100%;
+}
 .dashboard-container {
   min-height: 100vh;
   background-color: #f4f7f6;

@@ -1,4 +1,47 @@
 /* --- Base Layout --- */
+/* Skeleton Animation Keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Skeleton Base Class */
+.skeleton {
+  background: #f0f0f0;
+  background-image: linear-gradient(
+    90deg,
+    #f0f0f0 0px,
+    #e0e0e0 40px,
+    #f0f0f0 80px
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Specific Sizes for Table Cells */
+.skeleton-text {
+  height: 20px;
+  width: 100%;
+}
+
+.skeleton-short {
+  width: 30px; /* For SL No */
+}
+
+.skeleton-medium {
+  width: 60%; /* For Title */
+}
+
+.skeleton-long {
+  width: 90%; /* For Synopsis */
+}
 .project-list-container {
   background: white;
   padding: 25px;

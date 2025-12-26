@@ -1,0 +1,225 @@
+.team-form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.team-form-container h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section h3 {
+  font-size: 1.1rem;
+  color: #61dafb; /* React Blue accent */
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-group input, .input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Member Management Styles */
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.member-tag {
+  background-color: #e1f5fe;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.member-tag button {
+  background: #ff7675;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.add-member-box {
+  display: grid;
+  /* Change this: instead of 5 columns, we use 2 rows for better spacing above mobile */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  gap: 15px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+  align-items: end; /* Aligns the button with the bottom of inputs */
+}
+
+.add-member-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-add {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: #27ae60;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #2ecc71;
+}
+
+/* --- LOADING OVERLAY & SPINNER --- */
+
+/* The full-screen overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* White with transparency */
+  backdrop-filter: blur(5px); /* This creates the BLUR effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it sits on top of everything */
+}
+
+/* The Spinner Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 5px solid #e0e0e0; /* Light grey track */
+  border-top-color: #2c3e50; /* Project Dark Blue Theme */
+  border-right-color: #61dafb; /* Project Light Blue Theme */
+  animation: spin 1s linear infinite; /* Equivalent to the motion script */
+  will-change: transform;
+}
+/* --- TEAM FORM RESPONSIVE ADJUSTMENTS --- */
+
+/* --- Specific fix for the 768px - 1024px range --- */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .add-member-box {
+    /* At this size, 5 columns is too many. Let's do 3 columns so inputs are wide. */
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  /* Make the last two elements (usually Email and Add button) flow nicely */
+  .add-member-box > *:nth-child(4),
+  .add-member-box > *:nth-child(5) {
+    grid-column: span 1;
+  }
+}
+
+/* Tablet & Smaller Screens (under 850px) */
+@media (max-width: 850px) {
+  .team-form-container {
+    margin: 10px; /* Add some breathing room around the container */
+    padding: 20px;
+  }
+}
+
+/* Mobile Screens (under 768px) */
+@media (max-width: 768px) {
+  /* 1. Simplify the Member Add Box */
+  .add-member-box {
+    /* Switch from 5 columns to a 2-column grid that stacks as needed */
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px;
+  }
+
+  /* Make the "Add" button span both columns at the bottom */
+  .btn-add {
+    grid-column: span 2;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .form-section h3 {
+    font-size: 1rem;
+  }
+  
+  .member-tag {
+    width: 100%; /* Tags stack vertically on small screens */
+    justify-content: space-between;
+  }
+}
+
+/* Very Small Mobile (under 480px) */
+@media (max-width: 480px) {
+  /* 2. Full Stack for Inputs */
+  .add-member-box {
+    grid-template-columns: 1fr; /* Everything becomes one single column */
+  }
+
+  .add-member-box input, 
+  .btn-add {
+    grid-column: span 1;
+  }
+
+  .team-form-container h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .btn-submit {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}

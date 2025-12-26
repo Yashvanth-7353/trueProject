@@ -1,0 +1,295 @@
+/* Layout Container */
+
+/* --- SKELETON LOADING STYLES --- */
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+.skeleton {
+  background: #e0e0e0;
+  background-image: linear-gradient(
+    90deg,
+    #e0e0e0 0px,
+    #f0f0f0 40px,
+    #e0e0e0 80px
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Header Skeleton */
+.skeleton-header-text {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+}
+
+/* Sidebar Skeleton */
+.skeleton-menu-item {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Content Card Skeleton */
+.skeleton-title {
+  height: 25px;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.skeleton-table {
+  height: 150px;
+  width: 100%;
+}
+
+.skeleton-box {
+  height: 100px;
+  width: 100%;
+}
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Student Header (Top Strip) */
+.student-header {
+  background-color: #fff;
+  padding: 15px 30px;
+  border-bottom: 2px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.student-header h2 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.header-info-grid strong {
+  color: #333;
+}
+
+/* Main Body Layout (Sidebar + Content) */
+.dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+/* 2. Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  min-height: 100%;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #34495e;
+}
+
+.sidebar li.active {
+  background-color: #34495e;
+  border-left: 4px solid #61dafb;
+  font-weight: bold;
+}
+
+/* 3. Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.content-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  border: 1px solid #eee;
+}
+
+.content-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.highlight {
+  color: #2980b9;
+}
+
+/* Split Row (Mentor + Project Info) */
+.info-grid-row {
+  display: flex;
+  gap: 20px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+/* Standard Table Styling */
+.std-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.std-table th,
+.std-table td {
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.std-table th {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Specific Styles for Marks Table */
+.marks-table th:nth-child(1) {
+  width: 15%;
+} /* Phase column */
+.marks-table th:nth-child(2) {
+  width: 15%;
+} /* Marks column */
+
+.phase-col {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.dashboard-loading,
+.dashboard-error {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.no-data-msg {
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.status-tag {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.status-tag.approved {
+  color: green;
+}
+.status-tag.pending {
+  color: orange;
+}
+.status-tag.rejected {
+  color: red;
+}
+
+/* Responsive Design */ /* --- RESPONSIVE UPDATES --- */
+
+/* Tablet & Mobile (up to 992px) */
+@media (max-width: 992px) {
+  .dashboard-body {
+    flex-direction: column; /* Stacks sidebar on top of content */
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 10px 0;
+  }
+
+  .sidebar ul {
+    display: flex;
+    justify-content: space-around; /* Horizontal menu for tablet */
+    flex-wrap: wrap;
+  }
+
+  .sidebar li {
+    padding: 10px 15px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .sidebar li.active {
+    border-left: none;
+    border-bottom: 3px solid #61dafb;
+  }
+}
+
+/* Mobile Screens (up to 768px) */
+@media (max-width: 768px) {
+  .student-header {
+    padding: 15px;
+  }
+
+  .header-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2-column grid for student info */
+    gap: 10px;
+  }
+
+  .info-grid-row {
+    flex-direction: column; /* Stack Mentor and Project boxes */
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  /* Table Responsiveness */
+  .std-table {
+    display: block;
+    overflow-x: auto; /* Adds horizontal scroll to tables only */
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+/* Tiny Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .header-info-grid {
+    grid-template-columns: 1fr; /* Single column for info */
+  }
+
+  .sidebar ul {
+    flex-direction: column; /* Stack sidebar items again for very small screens */
+    text-align: center;
+  }
+}

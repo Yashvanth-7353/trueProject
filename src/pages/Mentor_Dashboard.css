@@ -1,0 +1,407 @@
+/* Inherits basic layout from StudentDashboard.css, adding specific overrides */
+
+/* --- SKELETON LOADING STYLES --- */
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+.skeleton {
+  background: #e0e0e0;
+  background-image: linear-gradient(
+    90deg,
+    #e0e0e0 0px,
+    #f0f0f0 40px,
+    #e0e0e0 80px
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Header Elements */
+.skeleton-header-title {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 15px;
+}
+
+.skeleton-header-info {
+  width: 150px;
+  height: 20px;
+  display: inline-block;
+}
+
+.skeleton-btn {
+  width: 100px;
+  height: 35px;
+}
+
+/* Sidebar Elements */
+.skeleton-menu-item {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 10px;
+}
+
+/* Table Elements */
+.skeleton-table-row td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.skeleton-cell {
+  height: 20px;
+  width: 80%;
+}
+
+.mentor-header-bg {
+  border-bottom: 3px solid #6c5ce7; /* Distinct purple line for Mentors */
+}
+
+/* Table Specifics */
+.mentor-table th {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.sim-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.sim-badge.safe { background-color: #dff9fb; color: #2ecc71; }
+.sim-badge.high-risk { background-color: #ff7675; color: white; animation: pulse 2s infinite; }
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.btn-manage {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Expanded Row Styling */
+.expanded-row {
+  background-color: #f8f9fa;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.detail-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.detail-card h4 {
+  margin-top: 0;
+  color: #6c5ce7;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.detail-card ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.detail-card li {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.full-width {
+  grid-column: 1 / -1; /* Spans full width */
+}
+
+/* AI Matches Section */
+.ai-matches {
+  background-color: #fff0f0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  border: 1px solid #ffcccc;
+}
+
+.ai-matches h5 {
+  margin: 0 0 5px 0;
+  color: #c0392b;
+}
+
+/* Grading Section */
+.grading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.phase-input-box {
+  background: #fdfdfd;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.phase-input-box h5 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.phase-input-box input {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.approval-box {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-toggle {
+  padding: 8px 16px;
+  border: 1px solid #27ae60;
+  background: white;
+  color: #27ae60;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.btn-toggle.active {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-toggle.reject {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.btn-toggle.reject.active {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-save-marks {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+
+.status-locked {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.status-locked.approved {
+  background-color: #dff9fb;
+  color: #27ae60;
+  border: 1px solid #27ae60;
+}
+
+.status-locked.rejected {
+  background-color: #ffeaa7;
+  color: #d35400;
+  border: 1px solid #d35400;
+}
+
+.error-text {
+  color: #c0392b;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.btn-logout {
+  background-color: #e74c3c; /* Red color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-left: 20px;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+
+/* ... (Keep your existing CSS exactly as it is) ... */
+
+/* =========================================
+   RESPONSIVE MENTOR DASHBOARD OVERRIDES
+   Add this to the bottom of the file
+   ========================================= */
+
+/* 1. Base Responsive Utility */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+/* 2. Tablet & Mobile Layout (Max-width: 900px) */
+@media (max-width: 900px) {
+  
+  /* Stack the Layout (Sidebar -> Top Nav) */
+  .dashboard-body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    overflow-x: auto; /* Allow scrolling if many tabs */
+    white-space: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .sidebar li {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    border-bottom: none;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* 3. Mobile Specifics (Max-width: 768px) */
+@media (max-width: 768px) {
+  
+  /* --- Header Stacking --- */
+  .student-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .header-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+
+  /* --- Details Grid (Team Members & AI) --- */
+  /* Turn the 2-column grid into a single column stack */
+  .details-grid {
+    grid-template-columns: 1fr; 
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .detail-card {
+    padding: 15px;
+  }
+
+  /* --- Grading Grid (Phase 1, 2, 3) --- */
+  /* Turn the 3-column grading grid into a stack */
+  .grading-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* --- Actions Section --- */
+  .approval-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .approval-box button {
+    width: 100%; /* Full width buttons for touch targets */
+    text-align: center;
+  }
+
+  .btn-save-marks {
+    width: 100%;
+    margin-top: 10px;
+    float: none; /* Remove float to prevent layout issues */
+  }
+
+  /* --- Table Adjustments --- */
+  .mentor-table th, 
+  .mentor-table td {
+    white-space: nowrap; /* Keep text on one line so table scrolls */
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Allow the Project Title to wrap a bit if it's super long */
+  .mentor-table td.title-cell {
+    white-space: normal;
+    min-width: 150px;
+  }
+
+  /* --- Expanded Row Reset --- */
+  /* Ensure the expanded row contents don't inherit weird table padding */
+  .expanded-row td {
+    padding: 0;
+    white-space: normal; /* Restore normal wrapping for details */
+  }
+}
+
+/* 4. Very Small Screens (Max-width: 480px) */
+@media (max-width: 480px) {
+  .mentor-header-bg h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Make grading inputs easier to tap */
+  .phase-input-box input {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .sim-badge {
+    font-size: 0.75rem;
+  }
+}

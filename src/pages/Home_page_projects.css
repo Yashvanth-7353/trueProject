@@ -1,0 +1,197 @@
+/* --- Base Layout --- */
+/* Skeleton Animation Keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Skeleton Base Class */
+.skeleton {
+  background: #f0f0f0;
+  background-image: linear-gradient(
+    90deg,
+    #f0f0f0 0px,
+    #e0e0e0 40px,
+    #f0f0f0 80px
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Specific Sizes for Table Cells */
+.skeleton-text {
+  height: 20px;
+  width: 100%;
+}
+
+.skeleton-short {
+  width: 30px; /* For SL No */
+}
+
+.skeleton-medium {
+  width: 60%; /* For Title */
+}
+
+.skeleton-long {
+  width: 90%; /* For Synopsis */
+}
+.project-list-container {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.list-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+/* Search Bar Styling */
+.search-box {
+  position: relative;
+  width: 300px;
+}
+
+.search-box input {
+  width: 100%; /* Changed to 100% of the container */
+  padding: 10px 15px;
+  padding-right: 40px; 
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #61dafb;
+  box-shadow: 0 0 5px rgba(97, 218, 251, 0.3);
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* --- Table Responsiveness Logic --- */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Column Width Controls */
+.project-table th:nth-child(1), 
+.project-table td:nth-child(1) {
+  width: 60px; /* SL No stays small */
+}
+
+.project-table th:nth-child(2), 
+.project-table td:nth-child(2) {
+  width: 250px; /* Specific width for Title */
+}
+
+.title-cell {
+  font-weight: 600;
+  color: #2980b9;
+  word-wrap: break-word; /* Prevents overflow if title is one long word */
+}
+
+.synopsis-cell {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: normal; /* Ensures wrapping */
+  min-width: 300px; /* Ensures synopsis doesn't get crushed */
+}
+
+/* --- Responsive Breakpoint (Below 768px) --- */
+@media (max-width: 768px) {
+  
+  /* 1. Force table to respect column widths */
+  .project-table {
+    table-layout: fixed; 
+    width: 100%;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .project-list-container {
+    padding: 15px;
+  }
+
+  /* 2. SL No: Keep small */
+  .project-table th:nth-child(1), 
+  .project-table td:nth-child(1) {
+    width: 40px !important; 
+    padding: 8px 2px;
+    text-align: center;
+  }
+
+  /* 3. Project Title: Wrap Whole Words Only */
+  .project-table th:nth-child(2), 
+  .project-table td:nth-child(2) {
+    width: 120px !important; /* Slightly wider to fit small words */
+    font-size: 0.85rem;
+    padding: 8px 5px;
+    
+    /* CRITICAL SETTINGS FOR WHOLE WORD WRAPPING */
+    white-space: normal;       /* Allow text to wrap to new lines */
+    word-break: normal;        /* Break ONLY at spaces, never mid-word */
+    overflow-wrap: break-word; /* Only break a word if it's longer than the column itself */
+  }
+
+  /* 4. Synopsis: Take remaining space */
+  .project-table th:nth-child(3), 
+  .project-table td:nth-child(3) {
+    width: auto !important; 
+    min-width: 0 !important;
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
+
+/* --- Global Utilities --- */
+.no-data, .loading, .error {
+  text-align: center;
+  padding: 30px;
+}
+
+.error { color: #e74c3c; }

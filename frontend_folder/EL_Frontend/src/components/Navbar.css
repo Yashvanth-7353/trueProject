@@ -110,27 +110,14 @@
 }
 
 /* --- Fix for Instant Click Feedback --- */
-
-/* --- Fix for Instant Click Feedback --- */
-
-/* 1. Immediate color change when clicked (Active State) */
-.navbar-links a:active,
-.btn-signup:active {
-  color: #61dafb !important; /* React Blue */
-  background-color: rgba(97, 218, 251, 0.1); /* Subtle background tint */
-  transform: translateY(1px); /* Slight press down effect */
-  transition: none; /* Instant change, no lag */
+.navbar-links a:hover,
+.navbar-links a:focus,
+.navbar-links a:active {
+  color: #61dafb;
 }
 
-/* 2. Specific fix for the Sign Up button background */
+.btn-signup:hover,
+.btn-signup:focus,
 .btn-signup:active {
-  background-color: #4fa8c7 !important; /* Darker blue */
-  color: #2c3e50 !important;
-}
-
-/* 3. Keep the link blue if it represents the Current Page */
-/* Note: This requires <NavLink> in your React code */
-.navbar-links a.active {
-  color: #61dafb; 
-  font-weight: bold;
+  background-color: #4fa8c7;
 }

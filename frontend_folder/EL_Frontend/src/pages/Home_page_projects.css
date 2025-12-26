@@ -136,6 +136,13 @@
 
 /* --- Responsive Breakpoint (Below 768px) --- */
 @media (max-width: 768px) {
+  
+  /* 1. Force table to respect column widths */
+  .project-table {
+    table-layout: fixed; 
+    width: 100%;
+  }
+
   .list-header {
     flex-direction: column;
     align-items: stretch;
@@ -150,20 +157,34 @@
     padding: 15px;
   }
 
-  /* Force the columns to behave on mobile */
+  /* 2. SL No: Keep small */
+  .project-table th:nth-child(1), 
+  .project-table td:nth-child(1) {
+    width: 40px !important; 
+    padding: 8px 2px;
+    text-align: center;
+  }
+
+  /* 3. Project Title: Wrap Whole Words Only */
   .project-table th:nth-child(2), 
   .project-table td:nth-child(2) {
-    width: 150px !important; /* Forces the Project Title column to shrink */
+    width: 120px !important; /* Slightly wider to fit small words */
     font-size: 0.85rem;
+    padding: 8px 5px;
+    
+    /* CRITICAL SETTINGS FOR WHOLE WORD WRAPPING */
+    white-space: normal;       /* Allow text to wrap to new lines */
+    word-break: normal;        /* Break ONLY at spaces, never mid-word */
+    overflow-wrap: break-word; /* Only break a word if it's longer than the column itself */
   }
 
+  /* 4. Synopsis: Take remaining space */
   .project-table th:nth-child(3), 
   .project-table td:nth-child(3) {
-    min-width: 250px !important; /* Gives more room to the synopsis */
-  }
-
-  .std-table.project-table {
-    font-size: 0.85rem; /* Shrink general text size */
+    width: auto !important; 
+    min-width: 0 !important;
+    font-size: 0.85rem;
+    padding: 8px;
   }
 }
 

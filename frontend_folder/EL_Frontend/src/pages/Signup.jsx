@@ -32,7 +32,7 @@ const Signup = () => {
     setError('');
     SF_loading(true);
 
-    const API_BASE_URL = "http://localhost:8000";
+    const API_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
     const endpoint = role === 'student' ? '/register/student' : '/register/teacher';
     
     // Prepare payload based on role

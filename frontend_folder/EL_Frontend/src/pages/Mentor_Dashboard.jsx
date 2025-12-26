@@ -89,7 +89,7 @@ const MentorDashboard = () => {
 
         if (!email) throw new Error("No user logged in.");
 
-        const response = await fetch(`http://localhost:8000/user/${email}`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/${email}`);
 
         if (!response.ok) throw new Error("Failed to fetch mentor details");
 
@@ -190,7 +190,7 @@ const MentorDashboard = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/update-project-status",
+        "${import.meta.env.VITE_BACKEND_BASE_URL}/update-project-status",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -276,7 +276,7 @@ const MentorDashboard = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/update-project-phases",
+        "${import.meta.env.VITE_BACKEND_BASE_URL}/update-project-phases",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

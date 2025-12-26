@@ -58,9 +58,11 @@ const TeamForm = () => {
       project_title: projectTitle,
       project_synopsis: synopsis
     };
-
+    
     try {
-      const response = await fetch('http://localhost:8000/create-team', {
+      const API_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+        console.log("API BASE URL =", API_BASE_URL);
+      const response = await fetch(`${API_BASE_URL}/create-team`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

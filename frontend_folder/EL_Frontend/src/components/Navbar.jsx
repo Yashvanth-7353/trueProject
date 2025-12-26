@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-import ProjectList from "/src/pages/Home_page_projects.jsx";
-
-
 const Navbar = () => {
   return (
     <nav className="navbar">

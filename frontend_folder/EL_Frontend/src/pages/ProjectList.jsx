@@ -11,7 +11,9 @@ const ProjectList = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:8000/projects");
+        const API_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+        console.log("API BASE URL =", API_BASE_URL);
+        const response = await fetch(`${API_BASE_URL}/projects`);
         if (!response.ok) {
           throw new Error("Failed to fetch projects");
         }

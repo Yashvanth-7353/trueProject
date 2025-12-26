@@ -23,7 +23,8 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    const API_BASE_URL = "http://localhost:8000";
+    const API_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+    console.log("API BASE URL =", API_BASE_URL);
     const endpoint = role === 'student' ? '/login/student' : '/login/teacher';
 
     try {

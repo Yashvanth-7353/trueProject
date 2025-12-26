@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Home_page_projects.css";
 import Navbar from '/src/components/Navbar.jsx';
+import ClickSpark from '/src/components/ClickSpark';
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
@@ -54,7 +55,14 @@ const ProjectList = () => {
   );
 
   return (
-    <>
+    <ClickSpark
+      sparkColor="#ff6ec7"
+      sparkSize={10}
+      sparkRadius={15}
+      sparkCount={8}
+      duration={400}
+    >
+
       <Navbar />
       <div className="project-list-container">
         
@@ -108,7 +116,8 @@ const ProjectList = () => {
           </table>
         </div>
       </div>
-    </>
+ 
+    </ClickSpark>
   );
 };
 

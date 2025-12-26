@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from '/src/components/Navbar.jsx';
 import './Home.css';
 import BlurText from "/src/components/BlurText";
+import ClickSpark from '/src/components/ClickSpark';
 
 const Home = () => {
    const navigate = useNavigate();
@@ -11,6 +12,13 @@ const Home = () => {
     navigate("/login");
   }
   return (
+    <ClickSpark
+  sparkColor="#ff6ec7"
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
     <div className="home-container">
       <Navbar />
 
@@ -124,6 +132,7 @@ const Home = () => {
   </div>
 </footer>
     </div>
+    </ClickSpark>
   );
 };
 

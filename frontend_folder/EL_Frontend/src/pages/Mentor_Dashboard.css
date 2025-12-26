@@ -404,4 +404,23 @@
   .sim-badge {
     font-size: 0.75rem;
   }
+
+  /* --- FIX SIDEBAR MENU (Side-by-Side) --- */
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;       /* Force horizontal layout */
+    justify-content: space-evenly; /* Spread items evenly */
+    padding: 0;
+    overflow-x: hidden;        /* Disable scroll, force fit */
+  }
+
+  .sidebar li {
+    padding: 10px 5px;         /* Reduce padding */
+    font-size: 0.75rem;        /* Shrink text size */
+    text-align: center;
+    flex: 1;                   /* Force equal width */
+    white-space: nowrap;       /* Prevent text wrapping */
+    border-right: none;        /* Remove the border used in tablet view */
+  }
 }
+

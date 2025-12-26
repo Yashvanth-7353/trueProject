@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TeamForm.css';
+import ClickSpark from '/src/components/ClickSpark';
 
 const TeamForm = () => {
   // 1. State for the overall team & project
@@ -92,6 +93,13 @@ const TeamForm = () => {
   };
 
   return (
+    <ClickSpark
+  sparkColor="#ff6ec7"
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
     <div className="team-form-container">
       
       {/* --- LOADING OVERLAY COMPONENT --- */}
@@ -176,6 +184,7 @@ const TeamForm = () => {
         </button>
       </form>
     </div>
+    </ClickSpark>
   );
 };
 

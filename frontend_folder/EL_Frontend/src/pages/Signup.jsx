@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
 import Navbar from '/src/components/Navbar.jsx';
 import './Login.css'; 
-
+import ClickSpark from '/src/components/ClickSpark';
 const Signup = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState('student');
@@ -85,6 +85,13 @@ const Signup = () => {
   };
 
   return (
+    <ClickSpark
+  sparkColor="#ff6ec7"
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
     <div>
       <Navbar />
       <div className="auth-container">
@@ -157,6 +164,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </ClickSpark>
   );
 };
 

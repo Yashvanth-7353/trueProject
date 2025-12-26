@@ -285,11 +285,21 @@
 /* Tiny Mobile (up to 480px) */
 @media (max-width: 480px) {
   .header-info-grid {
-    grid-template-columns: 1fr; /* Single column for info */
+    grid-template-columns: 1fr; /* Single column for student info */
   }
 
+  /* --- FIX SIDEBAR MENU --- */
   .sidebar ul {
-    flex-direction: column; /* Stack sidebar items again for very small screens */
+    flex-direction: row; /* Force horizontal layout */
+    justify-content: space-evenly; /* Spread items evenly */
+    padding: 0;
+  }
+
+  .sidebar li {
+    padding: 10px 5px; /* Reduce padding to fit width */
+    font-size: 0.75rem; /* Shrink text size */
     text-align: center;
+    flex: 1; /* Allow items to share available width equally */
+    white-space: nowrap; /* Prevent text wrapping inside the button */
   }
 }

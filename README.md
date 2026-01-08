@@ -99,3 +99,213 @@ root/
 │   └── package.json       # Node.js dependencies
 │
 └── README.md              # Project documentation
+
+## Local Setup (Developer Mode)
+
+Follow these steps to run the project on your local machine (Windows / Mac / Linux).
+
+---
+
+### Prerequisites
+- Python 3.11+
+- Node.js & npm
+- PostgreSQL (running locally)
+
+---
+
+## Backend Setup
+
+```bash
+# Navigate to backend directory
+cd backend
+
+# Create a virtual environment
+python -m venv .venv
+
+# Activate Virtual Environment
+# Windows:
+.venv\Scripts\activate
+# Mac/Linux:
+source .venv/bin/activate
+
+# Install Dependencies
+pip install -r requirements.txt
+
+# Create a .env file and configure DB_URL and API_KEY
+# (Refer to .env.example if available)
+
+# Run the Server
+uvicorn main:app --reload
+```
+
+Backend runs at: http://localhost:8000
+
+---
+
+## Frontend Setup
+
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+Frontend runs at: http://localhost:5173
+
+---
+
+## Cloud Deployment (AWS / Linux)
+
+Use the following scripts to deploy on an Ubuntu/Debian-based AWS EC2 instance.
+
+---
+
+## Backend Deployment Script
+
+```bash
+# ======================================
+# 0. SYSTEM PREPARATION (ONE TIME)
+# ======================================
+sudo apt update
+sudo apt install -y \
+  python3-full \
+  python3-venv \
+  python3-dev \
+  build-essential \
+  pkg-config \
+  libcairo2-dev \
+  libpango1.0-dev \
+  libgdk-pixbuf2.0-dev \
+  libffi-dev \
+  cmake \
+  curl \
+  git
+
+# ======================================
+# 1. CLEAN ANY OLD STATE
+# ======================================
+deactivate 2>/dev/null || true
+rm -rf ~/dbmsproject/.venv
+pip cache purge || true
+sudo apt clean
+sudo apt autoremove -y
+df -h
+
+# ======================================
+# 2. CREATE & ACTIVATE VENV
+# ======================================
+cd ~/dbmsproject
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+
+# ======================================
+# 3. INSTALL CPU-ONLY PYTORCH
+# ======================================
+pip install torch torchvision torchaudio \
+  --index-url https://download.pytorch.org/whl/cpu \
+  --no-cache-dir
+
+# Verify Torch
+python - <<EOF
+import torch
+print("Torch version:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+EOF
+
+# ======================================
+# 4. INSTALL DEPENDENCIES
+# ======================================
+pip install \
+  psycopg2-binary \
+  faiss-cpu \
+  sentence-transformers \
+  numpy \
+  google-genai \
+  python-dotenv \
+  openai \
+  markdown \
+  pycairo \
+  xhtml2pdf \
+  fastapi \
+  uvicorn \
+  --no-cache-dir
+
+# ======================================
+# 5. RUN BACKEND
+# ======================================
+cd backend
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+---
+
+## Frontend Deployment Script
+
+```bash
+# ======================================
+# 0. SYSTEM PREPARATION
+# ======================================
+sudo apt update
+sudo apt install -y curl git unzip
+
+# Install Node.js (LTS 20.x)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verify installation
+node -v
+npm -v
+
+# ======================================
+# 1. CLEAN OLD STATE
+# ======================================
+cd ~/dbmsproject/frontend
+rm -rf node_modules dist package-lock.json
+npm cache clean --force
+
+# ======================================
+# 2. INSTALL DEPENDENCIES
+# ======================================
+npm install
+
+# ======================================
+# 3. BUILD PROJECT
+# ======================================
+npm run build
+
+# ======================================
+# 4. SERVE FRONTEND
+# ======================================
+sudo npm install -g serve
+serve -s dist -l 5173
+```
+
+---
+
+## Important Notes for Cloud Deployment
+
+### Security Groups
+Allow inbound traffic on:
+- 8000 → Backend
+- 5173 → Frontend
+
+### Environment Variables
+Create a `.env` file inside `backend/` with:
+- PostgreSQL connection string
+- Gemini API Key
+
+### Background Processes
+To keep services running after logout:
+
+```bash
+nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
+```
+
+
+

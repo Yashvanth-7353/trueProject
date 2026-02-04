@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from '/src/components/Navbar.jsx';
 import './Home.css';
 import BlurText from "/src/components/BlurText";
-import ClickSpark from '/src/components/clickSpark';
-
+import ClickSpark from '/src/components/clickspark';
 const Home = () => {
    const navigate = useNavigate();
    
